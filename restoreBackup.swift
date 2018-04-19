@@ -8,6 +8,9 @@
 
 import Foundation
 
+let usage = "Usage: \(CommandLine.arguments.first!) [-d] <instance> <hh:mm>"
+
+/// Run a shell command
 @discardableResult
 func shell(launchPath: String, dir: String, arguments: String...) -> String {
     let task = Process()
@@ -29,16 +32,12 @@ func shell(launchPath: String, dir: String, arguments: String...) -> String {
 let formatter = DateFormatter()
 var backupTime = ""
 
-
 // MARK: Argument Parsing
-
-let usage = "Usage: \(CommandLine.arguments.first!) [-d] <instance> [hh:mm]"
-
-// Arguments
 var useYesterday = false
 var time: String
 var instance: String
 
+// Remove the first arguments (because its the file name)
 var arguments = Array(CommandLine.arguments.dropFirst())
 
 // -d
@@ -49,28 +48,27 @@ for i in 0..<arguments.count {
     }
 }
 
-// instance
-if arguments.isEmpty {
+if arguments.count != 2 {
     print(usage)
     exit(EXIT_FAILURE)
 }
+
+// instance
 instance = arguments.first!
 arguments.removeFirst()
 
 // time
-if !arguments.isEmpty {
-    // Test if argument is valid
-    let arg = arguments.first!
-    let timeRegex = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
-    if arg.range(of: timeRegex, options: .regularExpression, range: nil, locale: nil) == nil {
-        // Wrong format
-        print("Illegal time format. Use 'hh:mm'")
-        exit(EXIT_FAILURE)
-    }
-    // Get time
-    backupTime = arg.replacingOccurrences(of: ":", with: ".")
-    arguments.removeFirst()
+// Test if argument is valid
+let arg = arguments.first!
+let timeRegex = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+if arg.range(of: timeRegex, options: .regularExpression, range: nil, locale: nil) == nil {
+    // Wrong format
+    print("Illegal time format. Use 'hh:mm'")
+    exit(EXIT_FAILURE)
 }
+// Get time
+backupTime = arg.replacingOccurrences(of: ":", with: ".")
+arguments.removeFirst()
 
 if !arguments.isEmpty {
     print("Too many arguments provided!")
