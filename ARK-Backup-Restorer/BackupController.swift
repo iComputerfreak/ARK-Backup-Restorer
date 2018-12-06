@@ -18,14 +18,16 @@ import Foundation
 
 class BackupController {
     
+    let savegameFolder: String
     let instance: String
     var backupTime: String
     let backupDay: String
     let basePath = FileManager.default.homeDirectoryForCurrentUser.path + "/Backups/"
     
-    init(instance: String, time: String, isYesterday: Bool) {
+    init(savegameFolder: String, instance: String, time: String, isYesterday: Bool) {
         let formatter = DateFormatter()
         
+        self.savegameFolder = savegameFolder
         self.instance = instance
         self.backupTime = time
         // If no time provided by argument, use now
@@ -58,11 +60,11 @@ class BackupController {
         // the folder with the contents of the extracted zip
         let sourceFolder = "/tmp/" + String(zip!.components(separatedBy: "/").last!.dropLast(8)) + "/"
         // the ark savegame directory (/Saved/SavedArks/)
-        let destination = basePath + instance + "/ShooterGame/Saved/SavedArks/"
+        let destination = basePath + savegameFolder + "/ShooterGame/Saved/SavedArks/"
         
         // Check, if the savegame directory exists
         if !FileManager.default.fileExists(atPath: destination) {
-            print("Invalid instance")
+            print("Invalid savegame folder")
             exit(EXIT_FAILURE)
         }
         
@@ -93,7 +95,7 @@ class BackupController {
     private func getBackupFile() -> String? {
         let folder = basePath + backupDay + "/"
         // Sets the file name with the time (rounded down to 10) without the seconds
-        let filename = getMap() + "." + backupDay + "_" + backupTime
+        let filename = instance + "." + backupDay + "_" + backupTime
         // Get exact second of backup (find matching file name)
         for i in 0...9 {
             if FileManager.default.fileExists(atPath: "\(folder + filename).0\(i).tar.bz2") {
@@ -102,25 +104,6 @@ class BackupController {
             }
         }
         return nil
-    }
-    
-    private func getMap() -> String {
-        return BackupController.mapForInstance(instance)
-    }
-    
-    class func mapForInstance(_ instance: String) -> String {
-        if instance.lowercased().contains("extinction") {
-            return "extinction"
-        } else if instance.lowercased().contains("scorched") {
-            return "scorched_earth"
-        } else if instance.lowercased().contains("center") {
-            return "the_center"
-        } else if instance.lowercased().contains("aberration") {
-            return "aberration"
-        } else if instance.lowercased().contains("island") {
-            return "the_island"
-        }
-        return "the_island"
     }
     
     private func restore(sourceFolder: String, destinationFolder: String) {

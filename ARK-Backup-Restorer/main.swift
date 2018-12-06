@@ -8,11 +8,12 @@
 
 import Foundation
 
-public let usage = "Usage: \(CommandLine.arguments.first!) [-d] <instance> <hh:mm>"
+public let usage = "Usage: \(CommandLine.arguments.first!) [-d] <savegame folder> <instance> <hh:mm>"
 
 // MARK: Argument Parsing
 var useYesterday = false
 var time: String
+var savegameFolder: String
 var instance: String
 
 // Remove the first argument (the file name)
@@ -26,10 +27,15 @@ for i in 0..<arguments.count {
     }
 }
 
-if arguments.count != 2 {
+// there should be 3 arguments left
+if arguments.count != 3 {
     print(usage)
     exit(EXIT_FAILURE)
 }
+
+// savegame folder
+savegameFolder = arguments.first!
+arguments.removeFirst()
 
 // instance
 instance = arguments.first!
@@ -54,7 +60,7 @@ if !arguments.isEmpty {
 }
 
 // MARK: Execution
-let controller = BackupController(instance: instance, time: time, isYesterday: useYesterday)
+let controller = BackupController(savegameFolder: savegameFolder, instance: instance, time: time, isYesterday: useYesterday)
 controller.restoreBackup()
 
 exit(EXIT_SUCCESS)
