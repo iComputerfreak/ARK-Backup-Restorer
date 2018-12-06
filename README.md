@@ -2,7 +2,7 @@
 I built this tool to restore the backups I made with the [ark server tools from FezVrasta](https://github.com/FezVrasta/ark-server-tools). The script gets the correct `.tar.bz2` file from the backup directory, unzips it and copys the contents in the right directory (moving the old savegame to a separate `SavedArks.old` folder).
 
 ## How to compile the script on Linux
-* Install Swift from [http://www.swift.org]()
+* Install Swift from [http://www.swift.org](http://www.swift.org)
 * Run `swiftc -o restoreBackup path/to/main.swift`
 * The executable `restoreBackup` has been built
 
