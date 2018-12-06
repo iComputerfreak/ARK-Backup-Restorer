@@ -3,7 +3,7 @@ I built this tool to restore the backups I made with the [ark server tools from 
 
 ## How to compile the script on Linux
 * Install Swift from [http://www.swift.org](http://www.swift.org)
-* Run `swiftc -o restoreBackup path/to/main.swift`
+* Run `swiftc -o restoreBackup path/to/main.swift path/to/BackupController.swift`
 * The executable `restoreBackup` has been built
 
 ## Usage
