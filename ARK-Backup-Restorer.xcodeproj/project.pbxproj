@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB9A7FD121B6AB9A0074D692 /* BackupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A7FD021B6AB9A0074D692 /* BackupController.swift */; };
 		AB9EE5AD208947C1004722DC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EE5AC208947C1004722DC /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB9A7FD021B6AB9A0074D692 /* BackupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupController.swift; sourceTree = "<group>"; };
 		AB9EE5A9208947C1004722DC /* ARK-Backup-Restorer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ARK-Backup-Restorer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9EE5AC208947C1004722DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				AB9EE5AC208947C1004722DC /* main.swift */,
+				AB9A7FD021B6AB9A0074D692 /* BackupController.swift */,
 			);
 			path = "ARK-Backup-Restorer";
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9EE5AD208947C1004722DC /* main.swift in Sources */,
+				AB9A7FD121B6AB9A0074D692 /* BackupController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
