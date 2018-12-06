@@ -7,10 +7,11 @@ I built this tool to restore the backups I made with the [ark server tools from 
 * The executable `restoreBackup` has been built
 
 ## Usage
-`./restoreBackup [-d] <instance> <hh:mm>`
+`./restoreBackup [-d] <savegame folder> <instance> <hh:mm>`
 
-Argument | Explanation
--------- | -----------
--d       | Restore a backup from yesterday. If not set, the script will restore a backup from today
-instance | The exact name of the folder in your home directory, where the ark instance is located. (The folder where the ShooterGame subfolder is located in)
-hh:mm    | The time of the backup to restore
+Argument 				| Explanation
+---		 				| ---
+`-d`       			| Restore a backup from yesterday. If not set, the script will restore a backup from today
+`savegame folder` 	| The exact name of the folder in your home directory, where the ark instance is located. (The folder where the ShooterGame subfolder is located in)
+`instance` 			| The name of the arkmanager instance
+`hh:mm`    			| The time of the backup to restore
