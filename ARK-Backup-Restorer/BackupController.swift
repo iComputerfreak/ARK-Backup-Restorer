@@ -6,23 +6,17 @@
 //  Copyright © 2018 Jonas Frey. All rights reserved.
 //
 
-/*
- let home = FileManager.default.homeDirectoryForCurrentUser.path
- let backupDayDirectory = "\(home)/ARK-Backups/\(backupDay)"
- var unzippedFolder = "\(backupDayDirectory)/\(backupDay)_\(time)"
- var backupZipFilePath = "\(backupDayDirectory)/the_island.\(backupDay)_\(time)"
- var destination = "\(home)/\(instance)/ShooterGame/Saved/SavedArks"
- */
-
 import Foundation
 
 class BackupController {
+    
+    let backupFolder = "Backups/"
     
     let savegameFolder: String
     let instance: String
     var backupTime: String
     let backupDay: String
-    let basePath = FileManager.default.homeDirectoryForCurrentUser.path + "/Backups/"
+    let basePath = FileManager.default.homeDirectoryForCurrentUser.path + "/"
     
     init(savegameFolder: String, instance: String, time: String, isYesterday: Bool) {
         let formatter = DateFormatter()
@@ -58,13 +52,15 @@ class BackupController {
         }
         
         // the folder with the contents of the extracted zip
-        let sourceFolder = "/tmp/" + String(zip!.components(separatedBy: "/").last!.dropLast(8)) + "/"
+        var sourceFolder = "/tmp/" + String(zip!.components(separatedBy: "/").last!.dropLast(8)) + "/"
+        // the source foldes does not contain the instance name
+        sourceFolder = sourceFolder.replacingOccurrences(of: "\(instance).", with: "")
         // the ark savegame directory (/Saved/SavedArks/)
         let destination = basePath + savegameFolder + "/ShooterGame/Saved/SavedArks/"
         
         // Check, if the savegame directory exists
         if !FileManager.default.fileExists(atPath: destination) {
-            print("Invalid savegame folder")
+            print("Invalid savegame folder: " + destination)
             exit(EXIT_FAILURE)
         }
         
@@ -93,7 +89,7 @@ class BackupController {
     }
     
     private func getBackupFile() -> String? {
-        let folder = basePath + backupDay + "/"
+        let folder = basePath + backupFolder + backupDay + "/"
         // Sets the file name with the time (rounded down to 10) without the seconds
         let filename = instance + "." + backupDay + "_" + backupTime
         // Get exact second of backup (find matching file name)
@@ -116,7 +112,7 @@ class BackupController {
             }
             
             print("  Backing up data folder")
-            try fileManager.moveItem(atPath: destinationFolder, toPath: "\(destinationFolder).old")
+            try fileManager.moveItem(atPath: destinationFolder, toPath: "\(destinationFolder.dropLast()).old/")
             print("  Creating new data folder")
             try fileManager.createDirectory(atPath: destinationFolder, withIntermediateDirectories: false)
             
@@ -135,6 +131,8 @@ class BackupController {
         } catch {
             print("Error while restoring backup!")
             print(error)
+            print("  sourceFolder: " + sourceFolder)
+            print("  destinationFolder: " + destinationFolder)
             exit(EXIT_FAILURE)
         }
     }
