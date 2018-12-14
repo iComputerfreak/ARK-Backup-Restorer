@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB77FFD621C1478400777DCF /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77FFD521C1478400777DCF /* Option.swift */; };
 		AB9A7FD121B6AB9A0074D692 /* BackupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A7FD021B6AB9A0074D692 /* BackupController.swift */; };
 		AB9EE5AD208947C1004722DC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EE5AC208947C1004722DC /* main.swift */; };
+		ABB19F8F21BEBC5F00351782 /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB19F8E21BEBC5F00351782 /* ConsoleIO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB77FFD521C1478400777DCF /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		AB9A7FD021B6AB9A0074D692 /* BackupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupController.swift; sourceTree = "<group>"; };
 		AB9EE5A9208947C1004722DC /* ARK-Backup-Restorer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ARK-Backup-Restorer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9EE5AC208947C1004722DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		ABB19F8E21BEBC5F00351782 /* ConsoleIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleIO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				AB9EE5AC208947C1004722DC /* main.swift */,
 				AB9A7FD021B6AB9A0074D692 /* BackupController.swift */,
+				ABB19F8E21BEBC5F00351782 /* ConsoleIO.swift */,
+				AB77FFD521C1478400777DCF /* Option.swift */,
 			);
 			path = "ARK-Backup-Restorer";
 			sourceTree = "<group>";
@@ -123,6 +129,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB77FFD621C1478400777DCF /* Option.swift in Sources */,
+				ABB19F8F21BEBC5F00351782 /* ConsoleIO.swift in Sources */,
 				AB9EE5AD208947C1004722DC /* main.swift in Sources */,
 				AB9A7FD121B6AB9A0074D692 /* BackupController.swift in Sources */,
 			);
