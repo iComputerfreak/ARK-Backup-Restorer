@@ -8,36 +8,32 @@
 
 import Foundation
 
-struct Option: Hashable {
-    
+class Option: Argument, Hashable {
     let shortName: String
     let longName: String?
     let hasParameter: Bool
-    let description: String
+    // TODO: Check for nil in functions
+    var parameter: String?
     
     init(shortName: String, longName: String, hasParameter: Bool, description: String) {
         self.shortName = shortName
         self.longName = longName
         self.hasParameter = hasParameter
-        self.description = description
+        super.init(name: longName, description: description)
     }
     
-    func parse() -> (exists: Bool, value: String?) {
-        let args = CommandLine.arguments.dropFirst()
-        for i in 0..<args.count {
-            // If the argument matches
-            if args[i] == "-\(self.shortName)" ||
-                ((longName != nil) && args[i] == "--\(self.longName!)") {
-                // Maybe process the parameter
-                var parameter: String? = nil
-                if hasParameter {
-                    if (i + 1) < args.count {
-                        parameter = args[i + 1]
-                    }
-                }
-                return (true, parameter)
-            }
-        }
-        return (false, nil)
+    static func == (lhs: Option, rhs: Option) -> Bool {
+        if lhs.shortName != rhs.shortName { return false }
+        if lhs.longName != rhs.longName { return false }
+        if lhs.hasParameter != rhs.hasParameter { return false }
+        if lhs.description != rhs.description { return false }
+        return true
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.shortName)
+        hasher.combine(self.longName)
+        hasher.combine(self.hasParameter)
+        hasher.combine(self.description)
     }
 }

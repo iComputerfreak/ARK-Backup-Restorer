@@ -11,6 +11,7 @@
 		AB9A7FD121B6AB9A0074D692 /* BackupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A7FD021B6AB9A0074D692 /* BackupController.swift */; };
 		AB9EE5AD208947C1004722DC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EE5AC208947C1004722DC /* main.swift */; };
 		ABB19F8F21BEBC5F00351782 /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB19F8E21BEBC5F00351782 /* ConsoleIO.swift */; };
+		ABD0B73421C3E73E00BC03CD /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0B73321C3E73E00BC03CD /* Argument.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		AB9EE5A9208947C1004722DC /* ARK-Backup-Restorer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ARK-Backup-Restorer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9EE5AC208947C1004722DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		ABB19F8E21BEBC5F00351782 /* ConsoleIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleIO.swift; sourceTree = "<group>"; };
+		ABD0B73321C3E73E00BC03CD /* Argument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				AB9EE5AC208947C1004722DC /* main.swift */,
 				AB9A7FD021B6AB9A0074D692 /* BackupController.swift */,
 				ABB19F8E21BEBC5F00351782 /* ConsoleIO.swift */,
+				ABD0B73321C3E73E00BC03CD /* Argument.swift */,
 				AB77FFD521C1478400777DCF /* Option.swift */,
 			);
 			path = "ARK-Backup-Restorer";
@@ -132,6 +135,7 @@
 				AB77FFD621C1478400777DCF /* Option.swift in Sources */,
 				ABB19F8F21BEBC5F00351782 /* ConsoleIO.swift in Sources */,
 				AB9EE5AD208947C1004722DC /* main.swift in Sources */,
+				ABD0B73421C3E73E00BC03CD /* Argument.swift in Sources */,
 				AB9A7FD121B6AB9A0074D692 /* BackupController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
