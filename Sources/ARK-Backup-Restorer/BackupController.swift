@@ -92,6 +92,7 @@ class BackupController {
         let folder = basePath + backupFolder + backupDay + "/"
         // Sets the file name with the time (rounded down to 10) without the seconds
         let filename = instance + "." + backupDay + "_" + backupTime
+        print("Searching for backups here: \(folder + filename).0*.tar.bz2")
         // Get exact second of backup (find matching file name)
         for i in 0...9 {
             if FileManager.default.fileExists(atPath: "\(folder + filename).0\(i).tar.bz2") {
