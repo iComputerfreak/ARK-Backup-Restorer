@@ -45,14 +45,13 @@ class BackupController {
     
     func restoreBackup() {
         // the backup zip file (full path)
-        let zip = getBackupFile()
-        if zip == nil {
+        guard let zip = getBackupFile() else {
             print("Error getting backup file!")
             exit(EXIT_FAILURE)
         }
         
         // the folder with the contents of the extracted zip
-        var sourceFolder = "/tmp/" + String(zip!.components(separatedBy: "/").last!.dropLast(8)) + "/"
+        var sourceFolder = "/tmp/" + String(zip.components(separatedBy: "/").last!.dropLast(8)) + "/"
         // the source foldes does not contain the instance name
         sourceFolder = sourceFolder.replacingOccurrences(of: "\(instance).", with: "")
         // the ark savegame directory (/Saved/SavedArks/)
@@ -65,16 +64,16 @@ class BackupController {
         }
         
         // Check, if the backup file for the given time exists
-        if !FileManager.default.fileExists(atPath: zip!) {
-            print("Backup file " + zip! + " does not exist!")
+        if !FileManager.default.fileExists(atPath: zip) {
+            print("Backup file " + zip + " does not exist!")
         }
         
-        print("Backup found: " + zip!)
+        print("Backup found: " + zip)
         print("Destination: " + destination)
         print("Extracting Backup...")
         
         // Decompressing archive into /tmp
-        let output = shell(launchPath: "/bin/tar", dir: "/tmp", arguments: "-xf", zip!)
+        let output = shell(launchPath: "/bin/tar", dir: "/tmp", arguments: "-xf", zip)
         if !output.isEmpty {
             print("tar: \(output)")
         }
@@ -100,6 +99,7 @@ class BackupController {
                 return folder + filename + ".0\(i).tar.bz2"
             }
         }
+        print("No backup found!")
         return nil
     }
     
