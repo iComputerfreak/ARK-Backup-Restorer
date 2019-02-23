@@ -37,7 +37,7 @@ do {
 
 // put all parsed arguments in variables
 // optional return values can be parsed, because none of the positional arguments were optional
-let useYesterday: Bool = parsedArguments.get(useYesterdayArgument)!
+let useYesterday: Bool = parsedArguments.get(useYesterdayArgument) ?? false
 let savegame: String = parsedArguments.get(savegameArgument)!
 let instance: String = parsedArguments.get(instanceArgument)!
 var time: String = parsedArguments.get(timeArgument)!
