@@ -93,6 +93,7 @@ class BackupController {
         let filename = instance + "." + backupDay + "_" + backupTime
         print("Searching for backups here: \(folder + filename).0*.tar.bz2")
         // Get exact second of backup (find matching file name)
+        print(try? FileManager.default.contentsOfDirectory(atPath: folder) ?? "ERROR")
         for i in 0...9 {
             if FileManager.default.fileExists(atPath: "\(folder + filename).0\(i).tar.bz2") {
                 // Found a valid backup file
