@@ -42,9 +42,10 @@ class BackupController {
         }
         self.backupDay = formatter.string(from: date)
         
+        // Set the basePath to the home directory
         var path: String
         if #available(OSX 10.12, *) {
-            path = FileManager.default.homeDirectoryForCurrentUser.absoluteString
+            path = FileManager.default.homeDirectoryForCurrentUser.path
         } else {
             // Fallback on earlier versions
             path = NSHomeDirectory()
@@ -103,13 +104,7 @@ class BackupController {
         let folder = basePath + backupFolder + backupDay + "/"
         // Sets the file name with the time (rounded down to 10) without the seconds
         let filename = instance + "." + backupDay + "_" + backupTime
-        print("Searching for backups here: \(folder + filename).0*.tar.bz2")
         // Get exact second of backup (find matching file name)
-        do {
-            print(try FileManager.default.contentsOfDirectory(atPath: folder))
-        } catch let e {
-            print(e)
-        }
         for i in 0...9 {
             if FileManager.default.fileExists(atPath: "\(folder + filename).0\(i).tar.bz2") {
                 // Found a valid backup file
