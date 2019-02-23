@@ -16,7 +16,7 @@ class BackupController {
     let instance: String
     var backupTime: String
     let backupDay: String
-    let basePath = "~/"
+    let basePath: String
     
     init(savegameFolder: String, instance: String, time: String, isYesterday: Bool) {
         let formatter = DateFormatter()
@@ -41,6 +41,18 @@ class BackupController {
             date.addTimeInterval(-1 * 60 * 60 * 24)
         }
         self.backupDay = formatter.string(from: date)
+        
+        var path: String
+        if #available(OSX 10.12, *) {
+            path = FileManager.default.homeDirectoryForCurrentUser.absoluteString
+        } else {
+            // Fallback on earlier versions
+            path = NSHomeDirectory()
+        }
+        if path.last! != "/" {
+            path += "/"
+        }
+        basePath = path
     }
     
     func restoreBackup() {
